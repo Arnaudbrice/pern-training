@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/db/migrations/007-make-products-userId-foreignKey.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1791219054542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1791227975675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,14 @@\n     // onDelete: RESTRICT\n     // onUpdate: CASCADE\n \n     await queryInterface.addConstraint(\"Products\", {\n+      type: \"foreign key\",\n       fields: [\"userId\"],\n-      name: \"fk_products_userId\",\n+      name: \"fk_products_userId\",//contraint name, damit man sie im down wieder entfernen kann\n       references: {\n-        model: \"Users\",\n-        key: \"id\",\n+        table: \"Users\",\n+        field: \"id\",\n       },\n       onDelete: \"RESTRICT\",\n       onUpdate: \"CASCADE\",\n     });\n@@ -23,6 +24,8 @@\n \n   async down(queryInterface) {\n     // TODO:\n     // Constraint wieder entfernen\n+\n+    await queryInterface.removeConstraint(\"Products\", \"fk_products_userId\")\n   },\n };\n"
+                },
+                {
+                    "date": 1791229086807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,13 +19,25 @@\n       },\n       onDelete: \"RESTRICT\",\n       onUpdate: \"CASCADE\",\n     });\n+\n+    await queryInterface.addConstraint(\"Products\", {\n+      fields: [\"userId\"],\n+      type: \"foreign key\",\n+      name: \"fk_products_userId\",\n+      references: {\n+        table: \"Users\",\n+        field: \"id\",\n+      },\n+      onDelete: \"RESTRICT\",\n+      onUpdate: \"CASCADE\",\n+    });\n   },\n \n   async down(queryInterface) {\n-    // TODO:\n-    // Constraint wieder entfernen\n \n+    // remove foreign key constraint from the Products table\n+\n     await queryInterface.removeConstraint(\"Products\", \"fk_products_userId\");\n   },\n };\n"
+                }
+            ],
+            "date": 1791219054542,
+            "name": "Commit-0",
+            "content": "\"use strict\";\n\n/** @type {import('sequelize-cli').Migration} */\nmodule.exports = {\n  async up(queryInterface) {\n    // TODO:\n    // Foreign-Key-Constraint auf Products.userId hinzufügen\n    // Referenz: Users.id\n    // onDelete: RESTRICT\n    // onUpdate: CASCADE\n\n    await queryInterface.addConstraint(\"Products\",{\n      fields:[\"userId\"],\n      name:\"fk_products_userId\",\n      references:{\n        model:\"Users\",\n        key:\"id\"\n      },\n      onDelete:\"RESTRICT\",\n      onUpdate:\"CASCADE\"\n\n    })\n  },\n\n  async down(queryInterface) {\n    // TODO:\n    // Constraint wieder entfernen\n  },\n};"
+        }
+    ]
+}

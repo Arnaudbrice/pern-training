@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/controllers/product.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1789133903626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1789658635070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n \n export async function getProducts(req, res, next) {\n   try {\n     // TODO D1.6: Hole alle Produkte mit Sequelize.\n+\n+    const products  = await Product.findAll();\n     // TODO D1.7: Gib sie als JSON zurück.\n     throw new Error(\"TODO D1.6\");\n   } catch (error) {\n     next(error);\n"
+                },
+                {
+                    "date": 1789658646727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n export async function getProducts(req, res, next) {\n   try {\n     // TODO D1.6: Hole alle Produkte mit Sequelize.\n \n-    const products  = await Product.findAll();\n+    const products = await Product.findAll();\n     // TODO D1.7: Gib sie als JSON zurück.\n     throw new Error(\"TODO D1.6\");\n   } catch (error) {\n     next(error);\n"
+                },
+                {
+                    "date": 1789658762115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,19 @@\n // TODO D1.5: Importiere Product.\n \n+import Product from \"../models/Product\";\n+\n export async function getProducts(req, res, next) {\n   try {\n     // TODO D1.6: Hole alle Produkte mit Sequelize.\n \n     const products = await Product.findAll();\n-    // TODO D1.7: Gib sie als JSON zurück.\n-    throw new Error(\"TODO D1.6\");\n+\n+    if(products.length===0){\n+\n+      // TODO D1.7: Gib sie als JSON zurück.\n+      throw new Error(\"products not found\");\n+    }\n   } catch (error) {\n     next(error);\n   }\n }\n"
+                },
+                {
+                    "date": 1789658872394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     const products = await Product.findAll();\n \n     if (products.length === 0) {\n       // TODO D1.7: Gib sie als JSON zurück.\n-      throw new Error(\"products not found\");\n+      throw new Error(\"products not found\",{cause:404});\n     }\n   } catch (error) {\n     next(error);\n   }\n"
+                },
+                {
+                    "date": 1789658956278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,13 @@\n \n export async function getProduct(req, res, next) {\n   try {\n     // TODO D1.8: Lies id aus req.params.\n+\n+    const {id}=req.params;\n     // TODO D1.9: Suche mit findByPk().\n+    const product  = await Model.findByPk(id);\n+    if (!product ) {throw new Error('Model not found', { cause: 404 });}\n     // TODO D1.10: Wenn kein Produkt existiert -> Fehler mit Status 404.\n     // TODO D1.11: Produkt als JSON zurückgeben.\n     throw new Error(\"TODO D1.8\");\n   } catch (error) {\n"
+                }
+            ],
+            "date": 1789133903626,
+            "name": "Commit-0",
+            "content": "// TODO D1.5: Importiere Product.\n\nexport async function getProducts(req, res, next) {\n  try {\n    // TODO D1.6: Hole alle Produkte mit Sequelize.\n    // TODO D1.7: Gib sie als JSON zurück.\n    throw new Error(\"TODO D1.6\");\n  } catch (error) {\n    next(error);\n  }\n}\n\nexport async function getProduct(req, res, next) {\n  try {\n    // TODO D1.8: Lies id aus req.params.\n    // TODO D1.9: Suche mit findByPk().\n    // TODO D1.10: Wenn kein Produkt existiert -> Fehler mit Status 404.\n    // TODO D1.11: Produkt als JSON zurückgeben.\n    throw new Error(\"TODO D1.8\");\n  } catch (error) {\n    next(error);\n  }\n}\n"
+        }
+    ]
+}

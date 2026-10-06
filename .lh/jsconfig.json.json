@@ -1,0 +1,26 @@
+{
+    "sourceFile": "jsconfig.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1790178164233,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1790178225687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"compilerOptions\": {\n-    /*   \"checkJs\": true,//Typprüfung für .js-Dateien */\n+      \"checkJs\": true,//Typprüfung für .js-Dateien\n     \"module\": \"NodeNext\", //legt das Modulsystem fest\n     \"moduleResolution\": \"NodeNext\" //legt fest, wie Imports gefunden werden\n   },\n   \"include\": [\"src/**/*.js\"] //bestimmt die zu prüfenden Dateien\n"
+                },
+                {
+                    "date": 1790862300810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n {\n   \"compilerOptions\": {\n     \"checkJs\": true, //Typprüfung für .js-Dateien\n     \"module\": \"NodeNext\", //legt das Modulsystem fest\n-    \"moduleResolution\": \"NodeNext\" //legt fest, wie Imports gefunden werden\n+    \"moduleResolution\": \"NodeNext\", //legt fest, wie Imports gefunden werden\n+    \"allowJs\": true\n   },\n   \"include\": [\"src/**/*.js\"] //bestimmt die zu prüfenden Dateien\n }\n"
+                }
+            ],
+            "date": 1790178164233,
+            "name": "Commit-0",
+            "content": "{\n  \"compilerOptions\": {\n  /*   \"checkJs\": true,//Typprüfung für .js-Dateien */\n    \"module\": \"NodeNext\",//legt das Modulsystem fest\n    \"moduleResolution\": \"NodeNext\"//legt fest, wie Imports gefunden werden\n  },\n  \"include\": [\"src/**/*.js\"]//bestimmt die zu prüfenden Dateien\n}"
+        }
+    ]
+}

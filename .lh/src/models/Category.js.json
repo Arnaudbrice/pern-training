@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/models/Category.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1790171475270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1790171502208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n+import { DataTypes } from \"sequelize\";\n+import { sequelize } from \"../db\";\n+\n const Category = sequelize.define({\n   name: {\n     type: DataTypes.STRING,\n+    allowNull: false,\n   },\n+\n });\n"
+                },
+                {
+                    "date": 1790171697552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,4 +6,7 @@\n     type: DataTypes.STRING,\n     allowNull: false,\n   },\n });\n+\n+\n+export default Category;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1790171475270,
+            "name": "Commit-0",
+            "content": "\n\nconst Category= sequelize.define({\n  name:{\n    type:DataTypes.STRING\n  }\n})"
+        }
+    ]
+}

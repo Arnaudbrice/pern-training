@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/db/migrations/001-create-users.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1790808859678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1790808924136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,7 @@\n \"use strict\";\n+module.exports = {\n+async up(queryInterface,Sequelize){\n+\n+}\n+\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1790809084807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,11 @@\n \"use strict\";\n module.exports = {\n-  async up(queryInterface, Sequelize) {},\n+  async up(queryInterface, Sequelize) {\n+queryInterface.createTable()\n+\n+  },\n+\n+  async down(queryInterface, Sequelize) {\n+\n+  }\n };\n"
+                }
+            ],
+            "date": 1790808859678,
+            "name": "Commit-0",
+            "content": "\"use strict\"\n\n"
+        }
+    ]
+}

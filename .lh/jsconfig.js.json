@@ -1,0 +1,18 @@
+{
+    "sourceFile": "jsconfig.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1790176979354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1790176979354,
+            "name": "Commit-0",
+            "content": "{\n  \"compilerOptions\": {\n    \"checkJs\": true,//Typprüfung für .js-Dateien\n    \"module\": \"NodeNext\",//legt das Modulsystem fest\n    \"moduleResolution\": \"NodeNext\"//legt fest, wie Imports gefunden werden\n  },\n  \"include\": [\"src/**/*.js\"]//bestimmt die zu prüfenden Dateien\n}"
+        }
+    ]
+}

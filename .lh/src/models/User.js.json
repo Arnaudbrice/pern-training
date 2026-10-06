@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/models/User.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1790174342305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1790174354693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,4 +6,6 @@\n     type: DataTypes.STRING,\n     allowNull: false,\n   },\n });\n+\n+export default User;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1790174394291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n const User = sequelize.define({\n   email: {\n     type: DataTypes.STRING,\n     allowNull: false,\n+    unique:true\n   },\n });\n \n export default User;\n"
+                }
+            ],
+            "date": 1790174342305,
+            "name": "Commit-0",
+            "content": "import { DataTypes } from \"sequelize\";\nimport { sequelize } from \"../db\";\n\n\nconst User= sequelize.define({\n  email:{\n    type:DataTypes.STRING,\n    allowNull:false\n  }\n})"
+        }
+    ]
+}

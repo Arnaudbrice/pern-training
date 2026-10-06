@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/routes/product.routes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1789659636381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1789659642106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,8 @@\n const productRouter = express.Router();\n \n // TODO D1.13: GET / -> alle Produkte\n \n-productRouter.get(\"/\",getProducts);\n+productRouter.get(\"/\", getProducts);\n // TODO D1.14: GET /:id -> einzelnes Produkt\n \n export default productRouter;\n"
+                },
+                {
+                    "date": 1789659730412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,4 +8,5 @@\n productRouter.get(\"/\", getProducts);\n // TODO D1.14: GET /:id -> einzelnes Produkt\n \n export default productRouter;\n+\n"
+                },
+                {
+                    "date": 1789659741377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import express from \"express\";\n+import { getProducts } from \"../controllers/product.controller\";\n // TODO D1.12: Importiere getProducts und getProduct.\n \n const productRouter = express.Router();\n \n // TODO D1.13: GET / -> alle Produkte\n \n-productRouter.get(\"/\", getProducts);\n+productRouter.get(\"/\", getProducts(req, res, next));\n // TODO D1.14: GET /:id -> einzelnes Produkt\n \n export default productRouter;\n"
+                },
+                {
+                    "date": 1789659758840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n const productRouter = express.Router();\n \n // TODO D1.13: GET / -> alle Produkte\n \n-productRouter.get(\"/\", getProducts(req, res, next));\n+productRouter.get(\"/\", getProducts);\n // TODO D1.14: GET /:id -> einzelnes Produkt\n \n export default productRouter;\n"
+                },
+                {
+                    "date": 1789659804232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n import express from \"express\";\n-import { getProducts } from \"../controllers/product.controller.js\";\n+import { getProduct, getProducts } from \"../controllers/product.controller.js\";\n // TODO D1.12: Importiere getProducts und getProduct.\n \n const productRouter = express.Router();\n \n // TODO D1.13: GET / -> alle Produkte\n \n productRouter.get(\"/\", getProducts);\n // TODO D1.14: GET /:id -> einzelnes Produkt\n+productRouter.get(\"/:id\",getProduct)\n \n export default productRouter;\n"
+                },
+                {
+                    "date": 1789663288365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n import express from \"express\";\n import { getProduct, getProducts } from \"../controllers/product.controller.js\";\n+\n+/* Ein Router fängt eine Request ab und sucht nach der passenden Route, dann ruft den zugeordneten Controller auf */\n // TODO D1.12: Importiere getProducts und getProduct.\n \n const productRouter = express.Router();\n \n@@ -10,4 +12,6 @@\n // TODO D1.14: GET /:id -> einzelnes Produkt\n productRouter.get(\"/:id\", getProduct);\n \n export default productRouter;\n+\n+\n"
+                }
+            ],
+            "date": 1789659636381,
+            "name": "Commit-0",
+            "content": "import express from \"express\";\n// TODO D1.12: Importiere getProducts und getProduct.\n\nconst productRouter = express.Router();\n\n// TODO D1.13: GET / -> alle Produkte\n\nproductRouter.get(\"/\",getProducts);\n// TODO D1.14: GET /:id -> einzelnes Produkt\n\nexport default productRouter;\n"
+        }
+    ]
+}

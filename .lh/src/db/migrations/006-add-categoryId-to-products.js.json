@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/db/migrations/006-add-categoryId-to-products.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1791218328430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1791218481246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,18 @@\n /**@type(import('sequelize-cli').Migration)*/\n module.exports={\n   async up(queryInterface,Sequelize){\n \n-    await queryInterface.\n+    await queryInterface.addColumn(\"Products\", \"categoryId\", {\n+      type: Sequelize.INTEGER,\n+      allowNull: false,\n+      references:{\n+        model:\"Category\",\n+        key:\"id\"\n+      },\n+      onDelete:\"RESTRICT\",\n+      onUpdate:\"CASCADE\"\n+    })\n \n \n   },\n   async down(queryInterface,Sequelize){\n"
+                },
+                {
+                    "date": 1791218528523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,6 +12,8 @@\n       onDelete: \"RESTRICT\",\n       onUpdate: \"CASCADE\",\n     });\n   },\n-  async down(queryInterface, Sequelize) {},\n+  async down(queryInterface, Sequelize) {\n+    await queryInterface.removeColumn(\"Products\", \"categoryId\")\n+  },\n };\n"
+                },
+                {
+                    "date": 1791218536868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,8 @@\n       onDelete: \"RESTRICT\",\n       onUpdate: \"CASCADE\",\n     });\n   },\n-  async down(queryInterface, Sequelize) {\n+  async down(queryInterface) {\n     await queryInterface.removeColumn(\"Products\", \"categoryId\");\n   },\n };\n"
+                }
+            ],
+            "date": 1791218328430,
+            "name": "Commit-0",
+            "content": "\"use strict\"\n/**@type(import('sequelize-cli').Migration)*/\nmodule.exports={\n  async up(queryInterface,Sequelize){\n\n    await queryInterface.\n\n\n  },\n  async down(queryInterface,Sequelize){\n\n  }\n}"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "checkJs": true, //Typprüfung für .js-Dateien
+    "module": "NodeNext", //legt das Modulsystem fest
+    "moduleResolution": "NodeNext" //legt fest, wie Imports gefunden werden
+  },
+  "include": ["src/**/*.js", "src/db/config.cjs"] //bestimmt die zu prüfenden Dateien
+}

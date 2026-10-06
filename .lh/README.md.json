@@ -1,0 +1,18 @@
+{
+    "sourceFile": "README.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1789142035469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1789142035469,
+            "name": "Commit-0",
+            "content": "# PERN Refresh – Woche 1\n\nDieses Projekt ist ein separates Trainingsprojekt. Dein originales Bon-Marché-Projekt wird nicht verändert.\n\n## Wochenziel\nZuerst prüfen, ob Express + PostgreSQL + Sequelize aus dem Gedächtnis noch sicher implementiert werden können. TypeScript kommt später.\n\n| Tag | Schwerpunkt |\n|---|---|\n| Montag | Sequelize-Verbindung, Product Model, GET, `findAll`, `findByPk` |\n| Dienstag | Product CRUD, `create`, `update`, `destroy` |\n| Mittwoch | Suche + `Op.iLike` + Query Params |\n| Donnerstag | Pagination + `limit`, `offset`, `count` |\n| Freitag | Associations + `include` und Mini-Challenge |\n\n## Danach\nWoche 2 wird stärker aus deinem echten Bon-Marché-PERN-Backend abgeleitet: User/Address, Cart/CartItem, Orders/OrderItems, Reviews und M:N Favorites.\n\n## Wichtig aus der Analyse deines Originalprojekts\nIm Original sind bereits viele Sequelize-Bereiche umgesetzt. Im `user.controller.js` befinden sich aber noch nicht migrierte Mongoose-Stellen, besonders Cart, Checkout und E-Mail-Order-Flows. Diese werden später als echte Migrationstickets bearbeitet.\n\n## Start\n1. `.env.example` nach `.env` kopieren und deine lokale PostgreSQL-Verbindung eintragen.\n2. `npm install`\n3. Erstelle bei Bedarf eine leere Datenbank `pern_refresh`.\n4. Bearbeite `DAY-1-TICKET.md`.\n\nKeine fertigen Lösungen aus dem Originalprojekt kopieren.\n\n\n\n\n\n"
+        }
+    ]
+}

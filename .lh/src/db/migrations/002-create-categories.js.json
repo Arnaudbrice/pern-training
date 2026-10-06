@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/db/migrations/002-create-categories.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1790878845594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1790878947350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,23 @@\n         primaryKey: true,\n         autoIncrement: true,\n         allowNull: false,\n       },\n+      name:{\n+        type:Sequelize.STRING,\n+        allowNull:false,\n+        unique:true\n+      },\n+      createdAt:{\n+        type:Sequelize.DATE,\n+        allowNull:false\n+      },\n+      updatedAt:{\n+        type:Sequelize.DATE,\n+        allowNull:false\n+      }\n     });\n   },\n-  async down(queryInterface, Sequelize) {},\n+  async down(queryInterface, Sequelize) {\n+await queryInterface.dropTable(\"Categories\")\n+  },\n };\n"
+                },
+                {
+                    "date": 1790879015402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,8 @@\n         allowNull: false,\n       },\n     });\n   },\n-  async down(queryInterface, Sequelize) {\n+  async down(queryInterface, _Sequelize) {\n     await queryInterface.dropTable(\"Categories\");\n   },\n };\n"
+                }
+            ],
+            "date": 1790878845594,
+            "name": "Commit-0",
+            "content": "/**@type{import('sequelize-cli').Migration}\n */\nmodule.exports={\n\n\n  async up(queryInterface,Sequelize){\n\n    await queryInterface.createTable(\"Categories\", {\n id:{\n      type:Sequelize.INTEGER,\n      primaryKey:true,\n      autoIncrement:true,\n      allowNull:false\n    }\n    })\n\n\n\n  },\n  async down(queryInterface, Sequelize){\n\n  }\n}"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/db/migrations/005-make-categories-name-unique.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1791218181528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1791218181528,
+            "name": "Commit-0",
+            "content": "\"use strict\";\n\n/** @type{import('sequelize-cli').Migration} */\n\nmodule.exports = {\n  async up(queryInterface) {\n    await queryInterface.addConstraint(\"Categories\", {\n      fields: [\"name\"],\n      type: \"unique\",\n      //! selbst vergebene contraint name, damit man sie im down wieder entfernen kann\n      name: \"unique_categories_name\",\n    });\n  },\n  async down(queryInterface) {\n    await queryInterface.removeConstraint(\n      \"Categories\",\n      \"unique_categories_name\",\n    );\n  },\n};\n"
+        }
+    ]
+}

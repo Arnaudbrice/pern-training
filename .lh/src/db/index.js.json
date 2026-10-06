@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/db/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1789496377190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1789496492819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import { Sequelize } from \"sequelize\";\n \n // TODO D1.1: Erzeuge eine Sequelize-Instanz mit process.env.PG_URI.\n // Dialect: postgres, logging: false\n-export const sequelize = new Sequelize(process.env.PG_URI);\n+export const sequelize = new Sequelize(process.env.PG_URI,{\n+  dialect:\"postgres\",\n+  logging:false\n+});\n \n export async function connectDatabase() {\n   // TODO D1.2: Teste die Verbindung mit sequelize.authenticate().\n }\n"
+                },
+                {
+                    "date": 1789496574348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n // TODO D1.1: Erzeuge eine Sequelize-Instanz mit process.env.PG_URI.\n // Dialect: postgres, logging: false\n export const sequelize = new Sequelize(process.env.PG_URI, {\n   dialect: \"postgres\",\n-  logging: false,\n+  logging: false,//don't show sql queries in the console\n });\n \n export async function connectDatabase() {\n   // TODO D1.2: Teste die Verbindung mit sequelize.authenticate().\n"
+                },
+                {
+                    "date": 1789496685288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n // TODO D1.1: Erzeuge eine Sequelize-Instanz mit process.env.PG_URI.\n // Dialect: postgres, logging: false\n export const sequelize = new Sequelize(process.env.PG_URI, {\n   dialect: \"postgres\",\n-  logging: false, //don't show sql queries in the console\n+  logging: false, //don't show output from sql queries in the console\n });\n \n export async function connectDatabase() {\n   // TODO D1.2: Teste die Verbindung mit sequelize.authenticate().\n"
+                }
+            ],
+            "date": 1789496377190,
+            "name": "Commit-0",
+            "content": "import { Sequelize } from \"sequelize\";\n\n// TODO D1.1: Erzeuge eine Sequelize-Instanz mit process.env.PG_URI.\n// Dialect: postgres, logging: false\nexport const sequelize = new Sequelize(process.env.PG_URI);\n\nexport async function connectDatabase() {\n  // TODO D1.2: Teste die Verbindung mit sequelize.authenticate().\n}\n"
+        }
+    ]
+}

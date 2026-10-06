@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/models/Product.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1789497158226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1789497720742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,9 @@\n // category: STRING, required\n // stock: INTEGER, default 0\n // userId: INTEGER, required\n \n-const Product = null;\n+const Product = sequelize.define(\"Product\", {\n+  title:{type:DataTypes.STRING}\n+});\n \n export default Product;\n"
+                },
+                {
+                    "date": 1789497735256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,8 @@\n // stock: INTEGER, default 0\n // userId: INTEGER, required\n \n const Product = sequelize.define(\"Product\", {\n-  title: { type: DataTypes.STRING },\n+  title: { type: DataTypes.STRING, required:true},\n });\n \n export default Product;\n"
+                },
+                {
+                    "date": 1789497770027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,11 @@\n // userId: INTEGER, required\n \n const Product = sequelize.define(\"Product\", {\n   title: { type: DataTypes.STRING, required: true },\n+  price:{\n+    type:DataTypes.DECIMAL(10,2),\n+    required:true\n+  }\n });\n \n export default Product;\n"
+                }
+            ],
+            "date": 1789497158226,
+            "name": "Commit-0",
+            "content": "// TODO D1.3: Importiere DataTypes und sequelize.\nimport { DataTypes } from \"sequelize\";\n\nimport {sequelize} from \"../db/index.js\";\n// TODO D1.4: Definiere ein Product-Model mit:\n// title: STRING, required\n// price: DECIMAL(10,2), required\n// description: TEXT, required\n// category: STRING, required\n// stock: INTEGER, default 0\n// userId: INTEGER, required\n\nconst Product = null;\n\nexport default Product;\n"
+        }
+    ]
+}

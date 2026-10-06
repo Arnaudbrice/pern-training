@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1789659439224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1789659827214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,8 @@\n \n /****** Route specific middleware setting ******/\n \n // TODO D1.15: Verbinde die Product-Routes unter /api/products.\n-\n app.use(\"/api/products\");\n \n app.use(errorHandler);\n \n"
+                },
+                {
+                    "date": 1789659856878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n /****** Route specific middleware setting ******/\n \n // TODO D1.15: Verbinde die Product-Routes unter /api/products.\n-app.use(\"/api/products\");\n+app.use(\"/api/products\",productRouter);\n \n app.use(errorHandler);\n \n const port = process.env.PORT || 3000;\n"
+                }
+            ],
+            "date": 1789659439224,
+            "name": "Commit-0",
+            "content": "import express from \"express\";\nimport productRouter from \"./routes/product.routes.js\";\nimport errorHandler from \"./middleware/errorHandler.js\";\nimport { connectDatabase } from \"./db/index.js\";\n\nconst app = express();\napp.use(express.json());\n\n/****** Route specific middleware setting ******/\n\n// TODO D1.15: Verbinde die Product-Routes unter /api/products.\n\napp.use(\"/api/products\")\n\napp.use(errorHandler);\n\nconst port = process.env.PORT || 3000;\n\nawait connectDatabase();\napp.listen(port, () => console.log(`PERN refresh API running on ${port}`));\n"
+        }
+    ]
+}

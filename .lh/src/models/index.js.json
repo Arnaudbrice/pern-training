@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/models/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1790171722966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1790171754334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,8 @@\n+/****************************************\n+ *           Associations definition\n+ ****************************************/\n+\n //********** Category/Product (1:N) **********\n \n import Category from \"./Category\";\n import Product from \"./Product\";\n"
+                },
+                {
+                    "date": 1790171764743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n+import Category from \"./Category\";\n+import Product from \"./Product\";\n+\n+\n /****************************************\n  *           Associations definition\n  ****************************************/\n \n //********** Category/Product (1:N) **********\n \n-import Category from \"./Category\";\n-import Product from \"./Product\";\n \n Product.belongsTo(Category);\n Category.hasMany(Product);\n"
+                },
+                {
+                    "date": 1790172236163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,14 @@\n  *           Associations definition\n  ****************************************/\n \n //********** Category/Product (1:N) **********\n-Product.belongsTo(Category);\n-Category.hasMany(Product);\n+\n+Category.hasMany(Product,{\n+  foreignKey:\"categoryId\",\n+  as:\"products\"\n+});\n+\n+Product.belongsTo(Category,{\n+  foreignKey:\"categoryId\",\n+  as:\"category\"\n+});\n"
+                },
+                {
+                    "date": 1790174663149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,4 +15,17 @@\n Product.belongsTo(Category, {\n   foreignKey: \"categoryId\",\n   as: \"category\",\n });\n+\n+\n+//********** User/product (1:N) **********\n+User.hasMany(Product,{\n+  foreignKey:\"userId\",\n+  as:\"products\"\n+})\n+\n+Product.belongsTo(User,{\n+  foreignkey:\"userId\",\n+  as:\"user\",\n+  onDelete: \"SET NULL\"//use delete → product not deleted\n+})\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1790171722966,
+            "name": "Commit-0",
+            "content": "\n//********** Category/Product (1:N) **********\n\nimport Category from \"./Category\";\nimport Product from \"./Product\";\n\nProduct.belongsTo(Category);\nCategory.hasMany(Product);"
+        }
+    ]
+}

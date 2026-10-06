@@ -1,0 +1,252 @@
+{
+  "Sequelize: addColumn": {
+    "scope": "javascript",
+    "prefix": "seq-add-column",
+    "description": "Sequelize: addColumn",
+    "body": [
+      "await queryInterface.addColumn(\"${1:Products}\", \"${2:name}\", {",
+      "  type: Sequelize.${3:STRING},",
+      "  allowNull: ${4|false,true|},",
+      "});$0"
+    ]
+  },
+  "Sequelize: addColumn mit Fremdschluessel": {
+    "scope": "javascript",
+    "prefix": "seq-add-fk-column",
+    "description": "Sequelize: addColumn mit Fremdschluessel",
+    "body": [
+      "await queryInterface.addColumn(\"${1:Products}\", \"${2:categoryId}\", {",
+      "  type: Sequelize.${3:INTEGER},",
+      "  allowNull: ${4|false,true|},",
+      "  references: {",
+      "    model: \"${5:Categories}\",",
+      "    key: \"${6:id}\",",
+      "  },",
+      "  onDelete: \"${7|RESTRICT,CASCADE,SET NULL,NO ACTION|}\",",
+      "  onUpdate: \"${8|CASCADE,RESTRICT,SET NULL,NO ACTION|}\",",
+      "});$0"
+    ]
+  },
+  "Sequelize: removeColumn": {
+    "scope": "javascript",
+    "prefix": "seq-remove-column",
+    "description": "Sequelize: removeColumn",
+    "body": [
+      "await queryInterface.removeColumn(\"${1:Products}\", \"${2:categoryId}\");$0"
+    ]
+  },
+  "Sequelize: changeColumn": {
+    "scope": "javascript",
+    "prefix": "seq-change-column",
+    "description": "Sequelize: changeColumn",
+    "body": [
+      "await queryInterface.changeColumn(\"${1:Products}\", \"${2:name}\", {",
+      "  type: Sequelize.${3:STRING},",
+      "  allowNull: ${4|false,true|},",
+      "});$0"
+    ]
+  },
+  "Sequelize: renameColumn": {
+    "scope": "javascript",
+    "prefix": "seq-rename-column",
+    "description": "Sequelize: renameColumn",
+    "body": [
+      "await queryInterface.renameColumn(\"${1:Products}\", \"${2:oldName}\", \"${3:newName}\");$0"
+    ]
+  },
+  "Sequelize: createTable": {
+    "scope": "javascript",
+    "prefix": "seq-create-table",
+    "description": "Sequelize: createTable",
+    "body": [
+      "await queryInterface.createTable(\"${1:Products}\", {",
+      "  id: {",
+      "    type: Sequelize.INTEGER,",
+      "    allowNull: false,",
+      "    autoIncrement: true,",
+      "    primaryKey: true,",
+      "  },",
+      "  ${2:name}: {",
+      "    type: Sequelize.${3:STRING},",
+      "    allowNull: ${4|false,true|},",
+      "  },",
+      "  createdAt: {",
+      "    type: Sequelize.DATE,",
+      "    allowNull: false,",
+      "  },",
+      "  updatedAt: {",
+      "    type: Sequelize.DATE,",
+      "    allowNull: false,",
+      "  },",
+      "});$0"
+    ]
+  },
+  "Sequelize: dropTable": {
+    "scope": "javascript",
+    "prefix": "seq-drop-table",
+    "description": "Sequelize: dropTable",
+    "body": [
+      "await queryInterface.dropTable(\"${1:Products}\");$0"
+    ]
+  },
+  "Sequelize: renameTable": {
+    "scope": "javascript",
+    "prefix": "seq-rename-table",
+    "description": "Sequelize: renameTable",
+    "body": [
+      "await queryInterface.renameTable(\"${1:OldProducts}\", \"${2:Products}\");$0"
+    ]
+  },
+  "Sequelize: addConstraint mit Fremdschluessel": {
+    "scope": "javascript",
+    "prefix": "seq-add-constraint",
+    "description": "Sequelize: addConstraint mit Fremdschluessel",
+    "body": [
+      "await queryInterface.addConstraint(\"${1:Products}\", {",
+      "  fields: [\"${2:userId}\"],",
+      "  type: \"foreign key\",",
+      "  name: \"${3:fk_products_userId}\",",
+      "  references: {",
+      "    table: \"${4:Users}\",",
+      "    field: \"${5:id}\",",
+      "  },",
+      "  onDelete: \"${6|RESTRICT,CASCADE,SET NULL,NO ACTION|}\",",
+      "  onUpdate: \"${7|CASCADE,RESTRICT,SET NULL,NO ACTION|}\",",
+      "});$0"
+    ]
+  },
+  "Sequelize: addConstraint unique": {
+    "scope": "javascript",
+    "prefix": "seq-add-unique",
+    "description": "Sequelize: addConstraint unique",
+    "body": [
+      "await queryInterface.addConstraint(\"${1:Users}\", {",
+      "  fields: [\"${2:email}\"],",
+      "  type: \"unique\",",
+      "  name: \"${3:uq_users_email}\",",
+      "});$0"
+    ]
+  },
+  "Sequelize: addConstraint primary key": {
+    "scope": "javascript",
+    "prefix": "seq-add-primary-key",
+    "description": "Sequelize: addConstraint primary key",
+    "body": [
+      "await queryInterface.addConstraint(\"${1:Products}\", {",
+      "  fields: [\"${2:id}\"],",
+      "  type: \"primary key\",",
+      "  name: \"${3:pk_products}\",",
+      "});$0"
+    ]
+  },
+  "Sequelize: addConstraint check": {
+    "scope": "javascript",
+    "prefix": "seq-add-check",
+    "description": "Sequelize: addConstraint check",
+    "body": [
+      "await queryInterface.addConstraint(\"${1:Products}\", {",
+      "  fields: [\"${2:price}\"],",
+      "  type: \"check\",",
+      "  name: \"${3:ck_products_price}\",",
+      "  where: {",
+      "    $2: { [Sequelize.Op.gte]: ${4:0} },",
+      "  },",
+      "});$0"
+    ]
+  },
+  "Sequelize: removeConstraint": {
+    "scope": "javascript",
+    "prefix": "seq-remove-constraint",
+    "description": "Sequelize: removeConstraint",
+    "body": [
+      "await queryInterface.removeConstraint(\"${1:Products}\", \"${2:fk_products_userId}\");$0"
+    ]
+  },
+  "Sequelize: addIndex": {
+    "scope": "javascript",
+    "prefix": "seq-add-index",
+    "description": "Sequelize: addIndex",
+    "body": [
+      "await queryInterface.addIndex(\"${1:Products}\", [\"${2:categoryId}\"], {",
+      "  name: \"${3:idx_products_categoryId}\",",
+      "  unique: ${4|false,true|},",
+      "});$0"
+    ]
+  },
+  "Sequelize: removeIndex": {
+    "scope": "javascript",
+    "prefix": "seq-remove-index",
+    "description": "Sequelize: removeIndex",
+    "body": [
+      "await queryInterface.removeIndex(\"${1:Products}\", \"${2:idx_products_categoryId}\");$0"
+    ]
+  },
+  "Sequelize: bulkInsert": {
+    "scope": "javascript",
+    "prefix": "seq-bulk-insert",
+    "description": "Sequelize: bulkInsert",
+    "body": [
+      "await queryInterface.bulkInsert(\"${1:Categories}\", [",
+      "  {",
+      "    ${2:name}: ${3:\"Electronics\"},",
+      "    createdAt: new Date(),",
+      "    updatedAt: new Date(),",
+      "  },",
+      "]);$0"
+    ]
+  },
+  "Sequelize: bulkUpdate": {
+    "scope": "javascript",
+    "prefix": "seq-bulk-update",
+    "description": "Sequelize: bulkUpdate",
+    "body": [
+      "await queryInterface.bulkUpdate(",
+      "  \"${1:Products}\",",
+      "  { ${2:name}: ${3:\"New name\"} },",
+      "  { ${4:id}: ${5:1} },",
+      ");$0"
+    ]
+  },
+  "Sequelize: bulkDelete mit Bedingung": {
+    "scope": "javascript",
+    "prefix": "seq-bulk-delete",
+    "description": "Sequelize: bulkDelete mit Bedingung",
+    "body": [
+      "await queryInterface.bulkDelete(\"${1:Products}\", {",
+      "  ${2:id}: ${3:1},",
+      "});$0"
+    ]
+  },
+  "Sequelize: describeTable": {
+    "scope": "javascript",
+    "prefix": "seq-describe-table",
+    "description": "Sequelize: describeTable",
+    "body": [
+      "const ${1:columns} = await queryInterface.describeTable(\"${2:Products}\");$0"
+    ]
+  },
+  "Sequelize: showIndex": {
+    "scope": "javascript",
+    "prefix": "seq-show-index",
+    "description": "Sequelize: showIndex",
+    "body": [
+      "const ${1:indexes} = await queryInterface.showIndex(\"${2:Products}\");$0"
+    ]
+  },
+  "Sequelize: tableExists": {
+    "scope": "javascript",
+    "prefix": "seq-table-exists",
+    "description": "Sequelize: tableExists",
+    "body": [
+      "const ${1:exists} = await queryInterface.tableExists(\"${2:Products}\");$0"
+    ]
+  },
+  "Sequelize: getForeignKeyReferencesForTable": {
+    "scope": "javascript",
+    "prefix": "seq-get-fk",
+    "description": "Sequelize: getForeignKeyReferencesForTable",
+    "body": [
+      "const ${1:foreignKeys} = await queryInterface.getForeignKeyReferencesForTable(\"${2:Products}\");$0"
+    ]
+  }
+}

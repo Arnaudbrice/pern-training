@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/db/migrations/000-baseline-existing-schema.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1791231995988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1791232022335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n \"use strict\";\n \n+// beschreibt exakt den Zustand deiner Datenbank bevor 004 beginnt\n /** @type {import(\"sequelize-cli\").Migration} */\n module.exports = {\n   async up(queryInterface, Sequelize) {\n     await queryInterface.createTable(\"Users\", {\n"
+                }
+            ],
+            "date": 1791231995988,
+            "name": "Commit-0",
+            "content": "\"use strict\";\n\n/** @type {import(\"sequelize-cli\").Migration} */\nmodule.exports = {\n  async up(queryInterface, Sequelize) {\n    await queryInterface.createTable(\"Users\", {\n      id: {\n        type: Sequelize.INTEGER,\n        allowNull: false,\n        autoIncrement: true,\n        primaryKey: true,\n      },\n      email: {\n        type: Sequelize.STRING,\n        allowNull: false,\n        unique: true,\n      },\n      createdAt: {\n        type: Sequelize.DATE,\n        allowNull: false,\n      },\n      updatedAt: {\n        type: Sequelize.DATE,\n        allowNull: false,\n      },\n    });\n\n    await queryInterface.createTable(\"Categories\", {\n      id: {\n        type: Sequelize.INTEGER,\n        allowNull: false,\n        autoIncrement: true,\n        primaryKey: true,\n      },\n      name: {\n        type: Sequelize.STRING,\n        allowNull: false,\n      },\n      createdAt: {\n        type: Sequelize.DATE,\n        allowNull: false,\n      },\n      updatedAt: {\n        type: Sequelize.DATE,\n        allowNull: false,\n      },\n    });\n\n    await queryInterface.createTable(\"Products\", {\n      id: {\n        type: Sequelize.INTEGER,\n        allowNull: false,\n        autoIncrement: true,\n        primaryKey: true,\n      },\n      title: {\n        type: Sequelize.STRING,\n        allowNull: false,\n      },\n      price: {\n        type: Sequelize.DECIMAL(10, 2),\n        allowNull: false,\n      },\n      description: {\n        type: Sequelize.TEXT,\n        allowNull: false,\n      },\n      category: {\n        type: Sequelize.ENUM(\"electronics\", \"clothing\", \"books\"),\n        allowNull: false,\n      },\n      stock: {\n        type: Sequelize.INTEGER,\n        allowNull: true,\n        defaultValue: 0,\n      },\n      userId: {\n        type: Sequelize.INTEGER,\n        allowNull: false,\n      },\n      createdAt: {\n        type: Sequelize.DATE,\n        allowNull: false,\n      },\n      updatedAt: {\n        type: Sequelize.DATE,\n        allowNull: false,\n      },\n    });\n  },\n\n  async down(queryInterface) {\n    await queryInterface.dropTable(\"Products\");\n    await queryInterface.dropTable(\"Categories\");\n    await queryInterface.dropTable(\"Users\");\n  },\n};"
+        }
+    ]
+}

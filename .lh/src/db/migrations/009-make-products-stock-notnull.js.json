@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/db/migrations/009-make-products-stock-notnull.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1791230983804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1791231060427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,18 @@\n \"use strict\";\n \n-/**@type{import(\"sequelize-cli\")} */\n+/**@type{import(\"sequelize-cli\").Migration} */\n module.exports = {\n   async up(queryInterface, Sequelize) {\n     await queryInterface.changeColumn(\"Products\", \"stock\", {\n       type: Sequelize.INTEGER,\n       allowNull: false,\n       defaultValue: 0,\n     });\n   },\n-  async down() {},\n+  async down(queryInterface, Sequelize) {\n+    await queryInterface.changeColumn(\"Products\", \"stock\", {\n+      type: Sequelize.INTEGER,\n+   defaultValue:0\n+    });\n+  },\n };\n"
+                },
+                {
+                    "date": 1791231100925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   },\n   async down(queryInterface, Sequelize) {\n     await queryInterface.changeColumn(\"Products\", \"stock\", {\n       type: Sequelize.INTEGER,\n+      allowNull:true,\n       defaultValue: 0,\n     });\n   },\n };\n"
+                }
+            ],
+            "date": 1791230983804,
+            "name": "Commit-0",
+            "content": "\"use strict\";\n\n/**@type{import(\"sequelize-cli\")} */\nmodule.exports={\n\n  async up(queryInterface, Sequelize){\nawait queryInterface.changeColumn(\"Products\", \"stock\", {\n  type: Sequelize.INTEGER,\n  allowNull: false,\n  defaultValue: 0,\n});\n  },\n  async down(){\n\n  },\n}"
+        }
+    ]
+}

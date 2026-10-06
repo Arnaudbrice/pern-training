@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/models/associations.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1790179274815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1790179451571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   foreignKey: \"categoryId\",\n   as: \"products\",\n });\n \n-//! foreign key und onDelete werden bei belongsTo() definiert\n+//! foreign key und onDelete werden bei belongsTo() definiert (Product wird mit categoryId erweitert)\n Product.belongsTo(Category, {\n   foreignKey: {\n     name: \"categoryId\",\n     allowNull: false, //!wichtig für onDelete restrict\n@@ -34,8 +34,9 @@\n   foreignKey: \"userId\",\n   as: \"products\",\n });\n \n+//! (Product wird mit userId erweitert)\n Product.belongsTo(User, {\n   foreignKey: {\n     name: \"userId\",\n     allowNull: false, //!wichtig für onDelete restrict\n"
+                }
+            ],
+            "date": 1790179274815,
+            "name": "Commit-0",
+            "content": "import Category from \"./Category.js\";\nimport Product from \"./Product.js\";\nimport User from \"./User.js\";\n\n/****************************************\n *           Associations definition\n ****************************************/\n\n//********** Category/Product (1:N) **********\n\nCategory.hasMany(Product, {\n  foreignKey: \"categoryId\",\n  as: \"products\",\n});\n\n//! foreign key und onDelete werden bei belongsTo() definiert\nProduct.belongsTo(Category, {\n  foreignKey: {\n    name: \"categoryId\",\n    allowNull: false, //!wichtig für onDelete restrict\n  },\n  as: \"category\",\n  onDelete: \"RESTRICT\", //!nur category ohne Product können gelöscht werden\n});\n\n/* should be checked by deleting category const productCount = await category.countProducts();\n\n    if (productCount > 0) {\n      throw new Error(\"Category still has products\", { cause: 409 });\n    } */\n\n//********** User/product (1:N) **********\nUser.hasMany(Product, {\n  foreignKey: \"userId\",\n  as: \"products\",\n});\n\nProduct.belongsTo(User, {\n  foreignKey: {\n    name: \"userId\",\n    allowNull: false, //!wichtig für onDelete restrict\n  },\n  as: \"user\",\n  onDelete: \"RESTRICT\", //!nur user ohne product können gelöscht werden\n});\n\nexport { Product, Category, User };\n"
+        }
+    ]
+}

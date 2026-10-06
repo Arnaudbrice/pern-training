@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/db/migrations/008-remove-old-products-category.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1791230684894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1791230684894,
+            "name": "Commit-0",
+            "content": "\"use strict\";\n/** @type{import(\"sequelize-cli\").Migration} */\nmodule.exports = {\n  async up(queryInterface) {\n    await queryInterface.removeColumn(\"Products\", \"category\");\n  },\n  async down(queryInterface, Sequelize) {\n    await queryInterface.addColumn(\"Products\", \"category\", {\n      type: Sequelize.ENUM(\"electronics\", \"clothing\", \"books\"),\n      allowNull: false,\n    });\n  },\n};\n"
+        }
+    ]
+}
