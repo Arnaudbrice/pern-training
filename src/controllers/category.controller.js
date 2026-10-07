@@ -13,6 +13,6 @@ export const createCategory = async (req, res, next) => {
 
     return res.status(201).json(category);
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };

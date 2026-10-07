@@ -1,12 +1,42 @@
 // TODO D1.5: Importiere Product.
 
+import { Op } from "sequelize";
 import { Product, Category, User } from "../models/associations.js";
+
+//********** GET /api/products **********
 
 export async function getProducts(req, res, next) {
   try {
-    // TODO D1.6: Hole alle Produkte mit Sequelize.
+    // page minimum 1
+    const page = Math.max(1, Math.floor(Number(req.query.page) || 1));
+    // limit minimum 1 und maximum 100
+    const limit = Math.min(
+      100,
+      Math.max(1, Math.floor(Number(req.query.limit) || 10)),
+    );
+
+    const search = req.query.search?.trim();
+
+    const where = search
+      ? {
+          title: {
+            [Op.iLike]: `%${search}%`,
+          },
+        }
+      : {};
+    /*
+page 1, offset=0
+page 2 , offset=10
+page 3, offset= 20
+page n, offset=(n-1)*10
+*/
+    // skips the first n products
+    const offset = (page - 1) * limit;
 
     const products = await Product.findAll({
+      where,
+      limit,
+      offset,
       include: [
         {
           model: Category,
@@ -19,14 +49,25 @@ export async function getProducts(req, res, next) {
       ],
     });
 
-    // TODO D1.7: Gib sie als JSON zurück.
+    const totalProducts = await Product.count({
+      where,
+    });
 
-    return res.json(products);
+    /* count 23-> total page 3 */
+    const totalPages = Math.ceil(totalProducts / limit);
+
+    return res.json({
+      products,
+      currentPage: page,
+      totalProducts,
+      totalPages,
+    });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 }
 
+//********** GET /api/products/:id **********
 export async function getProduct(req, res, next) {
   try {
     // TODO D1.8: Lies id aus req.params.
@@ -54,10 +95,11 @@ export async function getProduct(req, res, next) {
 
     return res.json(product);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 }
 
+//********** POST /api/products **********
 /**
  * Creates a new product.
  * @param {*} req - the request object
@@ -86,10 +128,11 @@ export const createProduct = async (req, res, next) => {
     //! status 201 wird im Gegensatz zu 200 nicht automatisch gesetzt
     return res.status(201).json(product);
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
+//********** PUT /api/products/:id **********
 /**
  * updates a product
  * @param {*} req - the request object
@@ -112,12 +155,13 @@ export const updateProduct = async (req, res, next) => {
     if (rowCount === 0) {
       throw new Error("Product not found", { cause: 404 });
     }
-    res.json(updatedProducts[0]);
+    return res.json(updatedProducts[0]);
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
+//********** DELETE /api/products/:id **********
 /**
  * Deletes a product
  * @param {*} req - the request object
@@ -134,6 +178,6 @@ export const deleteProduct = async (req, res, next) => {
     await product.destroy();
     return res.json({ deletedProduct: product });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
