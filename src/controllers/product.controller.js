@@ -2,6 +2,7 @@
 
 import { Op } from "sequelize";
 import { Product, Category, User } from "../models/associations.js";
+import model from "sequelize/lib/model";
 
 //********** GET /api/products **********
 
@@ -181,3 +182,13 @@ export const deleteProduct = async (req, res, next) => {
     return next(err);
   }
 };
+
+const orders = await Order.findAll({
+  include: [{ model: User, as: "user",
+     include: [model:Address, as:"defaultAddress"] },{
+      model:OrderItem,as:"orderItems",include:[
+        {model:Product, as:"product"}
+      ]
+     }],
+  order: [["createdAt", "DESC"]],
+});

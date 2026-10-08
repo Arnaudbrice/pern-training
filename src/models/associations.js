@@ -15,7 +15,7 @@ Product.belongsTo(Category, {
     allowNull: false,
   },
   as: "category",
-  onDelete: "RESTRICT", //!nur category ohne Product können gelöscht werden
+  onDelete: "RESTRICT", //!nur Product ohne zugeordnete category können gelöscht werden
 });
 
 Category.hasMany(Product, {
@@ -42,7 +42,81 @@ Product.belongsTo(User, {
     allowNull: false, //!wichtig für onDelete restrict
   },
   as: "user",
-  onDelete: "RESTRICT", //!nur user ohne product können gelöscht werden
+  onDelete: "RESTRICT", //!nur Product ohne zugeordnete user können gelöscht werden
+});
+
+//********** User/Order (1:N) **********
+
+User.hasMany(Order, {
+  foreignKey: "userId",
+  as: "orders",
+});
+
+Order.belongsTo(User, {
+  foreignKey: {
+    name: "userId",
+    allowNull: false,
+  },
+  as: "user",
+  onDelete: "RESTRICT", //!nur Order ohne zugeordnete user können gelöscht werden
+});
+
+//********** User/Address(1:N) **********
+
+User.hasMany(Address, {
+  foreignKey: "userId",
+  as: "addresses",
+});
+
+Address.belongsTo(User, {
+  foreignKey: {
+    name: "userId",
+    allowNull: false,
+  },
+  as: "user",
+  onDelete: "RESTRICT", //!nur Address ohne zugeordnete user können gelöscht werden
+});
+
+//! every user has a default address
+User.belongsTo(Address, {
+  foreignKey: {
+    name: "defaultAddressId",
+    allowNull: true, //default address will be set by the user
+  },
+  as: "defaultAddress",
+  onDelete: "RESTRICT", //!nur user ohne zugeordnete defaultAddress können gelöscht werden
+});
+
+//********** Order/OrderItem(1:N) **********
+
+Order.hasMany(OrderItem, {
+  foreignKey: "orderId",
+  as: "orderItems",
+});
+
+OrderItem.belongsTo(Order, {
+  foreignKey: {
+    name: "orderId",
+    allowNull: false,
+  },
+  as: "order",
+  onDelete: "RESTRICT", //nur orderItem ohne zugeordnete order können gelöscht werden
+});
+
+//********** Product/OrderItem **********
+
+Product.hasMany(OrderItem, {
+  foreignKey: "productId",
+  as: "orderItems",
+});
+
+OrderItem.belongsTo(Product, {
+  foreignKey: {
+    name: "productId",
+    allowNull: false,
+  },
+  as: "product",
+  onDelete: "RESTRICT", //nur orderItem ohne zugeordnete product können gelöscht werden
 });
 
 export { Product, Category, User };
