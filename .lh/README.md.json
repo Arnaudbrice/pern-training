@@ -3,11 +3,23 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1789142035469,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1791908784176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,4 +29,24 @@\n 3. Erstelle bei Bedarf eine leere Datenbank `pern_refresh`.\n 4. Bearbeite `DAY-1-TICKET.md`.\n \n Keine fertigen Lösungen aus dem Originalprojekt kopieren.\n+\n+# Migrations\n+\n+\n+## migration status check\n+\n+```bash\n+npx sequelize-cli db:migrate:status \\\n+  --config src/db/config.cjs \\\n+  --migrations-path src/db/migrations\n+  ```\n+\n+  Kontrolliere, dass die bisherigen Migrationen bis 009 als up angezeigt werden und 010-create-orders.js noch down ist.\n+\n+## migrate ausführen\n+\n+```bash\n+npx sequelize-cli db:migrate \\\n+  --config src/db/config.cjs \\\n+  --migrations-path src/db/migrations\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1791908874110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,20 @@\n ```\n \n Kontrolliere, dass die bisherigen Migrationen bis 009 als up angezeigt werden und 010-create-orders.js noch down ist.\n \n+```bash\n+Using environment \"development\".\n+up 000-baseline-existing-schema.js\n+up 004-add-password-to-users.js\n+up 005-make-categories-name-unique.js\n+up 006-add-categoryId-to-products.js\n+up 007-make-products-userId-foreignKey.js\n+up 008-remove-old-products-category.js\n+up 009-make-products-stock-notnull.js\n+down 010-create-orders.js\n+```\n+\n ## migrate ausführen\n \n ```bash\n npx sequelize-cli db:migrate \\\n"
+                },
+                {
+                    "date": 1791909039622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,4 +61,11 @@\n npx sequelize-cli db:migrate \\\n   --config src/db/config.cjs \\\n   --migrations-path src/db/migrations\n ```\n+\n+terminal:\n+```bash\n+Using environment \"development\".\n+== 010-create-orders: migrating =======\n+== 010-create-orders: migrated (0.102s)\n+```\n"
                 }
             ],
             "date": 1789142035469,

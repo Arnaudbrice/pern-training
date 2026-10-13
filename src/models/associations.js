@@ -45,6 +45,7 @@ Product.belongsTo(User, {
   onDelete: "RESTRICT", //!nur Product ohne zugeordnete user können gelöscht werden
 });
 
+/*
 //********** User/Order (1:N) **********
 
 User.hasMany(Order, {
@@ -118,5 +119,5 @@ OrderItem.belongsTo(Product, {
   as: "product",
   onDelete: "RESTRICT", //nur orderItem ohne zugeordnete product können gelöscht werden
 });
-
+ */
 export { Product, Category, User };

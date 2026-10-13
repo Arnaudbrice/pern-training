@@ -1,8 +1,7 @@
 // TODO D1.5: Importiere Product.
 
 import { Op } from "sequelize";
-import { Product, Category, User } from "../models/associations.js";
-import model from "sequelize/lib/model";
+import { Category, Product, User } from "../models/associations.js";
 
 //********** GET /api/products **********
 
@@ -183,12 +182,19 @@ export const deleteProduct = async (req, res, next) => {
   }
 };
 
-const orders = await Order.findAll({
-  include: [{ model: User, as: "user",
-     include: [model:Address, as:"defaultAddress"] },{
-      model:OrderItem,as:"orderItems",include:[
-        {model:Product, as:"product"}
-      ]
-     }],
+/* const orders = await Order.findAll({
+  include: [
+    {
+      model: User,
+      as: "user",
+      include: [{ model: Address, as: "defaultAddress" }],
+    },
+    {
+      model: OrderItem,
+      as: "orderItems",
+      include: [{ model: Product, as: "product" }],
+    },
+  ],
   order: [["createdAt", "DESC"]],
 });
+ */

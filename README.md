@@ -30,3 +30,74 @@ Im Original sind bereits viele Sequelize-Bereiche umgesetzt. Im `user.controller
 4. Bearbeite `DAY-1-TICKET.md`.
 
 Keine fertigen Lösungen aus dem Originalprojekt kopieren.
+
+# Migrations
+
+## migration status check
+
+```bash
+npx sequelize-cli db:migrate:status \
+  --config src/db/config.cjs \
+  --migrations-path src/db/migrations
+```
+
+Kontrolliere, dass die bisherigen Migrationen bis 009 als up angezeigt werden und 010-create-orders.js noch down ist.
+
+Terminal should display:
+
+```bash
+Using environment "development".
+up 000-baseline-existing-schema.js
+up 004-add-password-to-users.js
+up 005-make-categories-name-unique.js
+up 006-add-categoryId-to-products.js
+up 007-make-products-userId-foreignKey.js
+up 008-remove-old-products-category.js
+up 009-make-products-stock-notnull.js
+down 010-create-orders.js
+```
+
+## migrate ausführen
+
+```bash
+npx sequelize-cli db:migrate \
+  --config src/db/config.cjs \
+  --migrations-path src/db/migrations
+```
+
+terminal should display:
+
+```bash
+Using environment "development".
+== 010-create-orders: migrating =======
+== 010-create-orders: migrated (0.102s)
+```
+
+## Check with postgreSQL if the table has been successfully created
+
+```bash
+psql "postgres://postgres:<password>@localhost:5433/<databaseName>"
+```
+
+then
+
+```bash
+<databaseName>=# \d "Orders"
+```
+
+or
+
+```bash
+<databaseName>=# \dt
+
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ public | Categories    | table | postgres
+ public | Orders        | table | postgres ⬅︎ the new table
+ public | Products      | table | postgres
+ public | SequelizeMeta | table | postgres
+ public | Users         | table | postgres
+(5 rows)
+
+```
