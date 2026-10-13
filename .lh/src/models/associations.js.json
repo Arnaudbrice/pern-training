@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1790179274815,
@@ -12,6 +12,10 @@
                 {
                     "date": 1790179451571,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   foreignKey: \"categoryId\",\n   as: \"products\",\n });\n \n-//! foreign key und onDelete werden bei belongsTo() definiert\n+//! foreign key und onDelete werden bei belongsTo() definiert (Product wird mit categoryId erweitert)\n Product.belongsTo(Category, {\n   foreignKey: {\n     name: \"categoryId\",\n     allowNull: false, //!wichtig für onDelete restrict\n@@ -34,8 +34,9 @@\n   foreignKey: \"userId\",\n   as: \"products\",\n });\n \n+//! (Product wird mit userId erweitert)\n Product.belongsTo(User, {\n   foreignKey: {\n     name: \"userId\",\n     allowNull: false, //!wichtig für onDelete restrict\n"
+                },
+                {
+                    "date": 1791837525388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,10 @@\n   as: \"user\",\n   onDelete: \"RESTRICT\", //!nur Product ohne zugeordnete user können gelöscht werden\n });\n \n+\n+/*\n //********** User/Order (1:N) **********\n \n User.hasMany(Order, {\n   foreignKey: \"userId\",\n@@ -117,6 +119,6 @@\n   },\n   as: \"product\",\n   onDelete: \"RESTRICT\", //nur orderItem ohne zugeordnete product können gelöscht werden\n });\n-\n+ */\n export { Product, Category, User };\n"
                 }
             ],
             "date": 1790179274815,
