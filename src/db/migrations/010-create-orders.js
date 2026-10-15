@@ -17,6 +17,7 @@ module.exports = {
           model: "Users",
           key: "id",
         },
+        // nur Order mit zugeordnete user können gelöscht werden (nur Order mit user können gelöscht werden)
         onDelete: "RESTRICT",
         onUpdate: "CASCADE",
       },

@@ -1,4 +1,4 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, type Model } from "sequelize";
 import { sequelize } from "../db/index.js";
 
 type OrderStatus = "processing" | "shipped" | "delivered" | "cancelled";
@@ -39,6 +39,7 @@ type OrderCreationAttributes = OrderShippingAddress & {
   shippingCosts?: string | number; //the default is: 0
 };
 
+//! Model is normally a class, but here we use it as a type
 const Order = sequelize.define<Model<OrderAttributes, OrderCreationAttributes>>(
   "Order",
   {
