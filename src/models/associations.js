@@ -1,6 +1,7 @@
 import Category from "./Category.js";
 import Product from "./Product.js";
 import User from "./User.js";
+import Order from "./Order.ts";
 
 /****************************************
  *           Associations definition
@@ -15,7 +16,7 @@ Product.belongsTo(Category, {
     allowNull: false,
   },
   as: "category",
-  onDelete: "RESTRICT", //!nur Product ohne zugeordnete category können gelöscht werden
+  onDelete: "RESTRICT", //!nur Product mit zugeordnete category können gelöscht werden
 });
 
 Category.hasMany(Product, {
@@ -42,10 +43,9 @@ Product.belongsTo(User, {
     allowNull: false, //!wichtig für onDelete restrict
   },
   as: "user",
-  onDelete: "RESTRICT", //!nur Product ohne zugeordnete user können gelöscht werden
+  onDelete: "RESTRICT", //!nur Product mit zugeordnete user können gelöscht werden
 });
 
-/*
 //********** User/Order (1:N) **********
 
 User.hasMany(Order, {
@@ -59,9 +59,10 @@ Order.belongsTo(User, {
     allowNull: false,
   },
   as: "user",
-  onDelete: "RESTRICT", //!nur Order ohne zugeordnete user können gelöscht werden
+  onDelete: "RESTRICT", //!nur Order mit zugeordnete user können gelöscht werden
 });
 
+/*
 //********** User/Address(1:N) **********
 
 User.hasMany(Address, {
@@ -75,7 +76,7 @@ Address.belongsTo(User, {
     allowNull: false,
   },
   as: "user",
-  onDelete: "RESTRICT", //!nur Address ohne zugeordnete user können gelöscht werden
+  onDelete: "RESTRICT", //!nur Address mit zugeordnete user können gelöscht werden
 });
 
 //! every user has a default address
@@ -85,7 +86,7 @@ User.belongsTo(Address, {
     allowNull: true, //default address will be set by the user
   },
   as: "defaultAddress",
-  onDelete: "RESTRICT", //!nur user ohne zugeordnete defaultAddress können gelöscht werden
+  onDelete: "RESTRICT", //!nur user mit zugeordnete defaultAddress können gelöscht werden
 });
 
 //********** Order/OrderItem(1:N) **********
@@ -101,7 +102,7 @@ OrderItem.belongsTo(Order, {
     allowNull: false,
   },
   as: "order",
-  onDelete: "RESTRICT", //nur orderItem ohne zugeordnete order können gelöscht werden
+  onDelete: "RESTRICT", //nur orderItem mit zugeordnete order können gelöscht werden
 });
 
 //********** Product/OrderItem **********
@@ -117,7 +118,7 @@ OrderItem.belongsTo(Product, {
     allowNull: false,
   },
   as: "product",
-  onDelete: "RESTRICT", //nur orderItem ohne zugeordnete product können gelöscht werden
+  onDelete: "RESTRICT", //nur orderItem mit zugeordnete product können gelöscht werden
 });
  */
 export { Product, Category, User };
