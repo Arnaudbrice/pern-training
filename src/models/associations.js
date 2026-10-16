@@ -1,7 +1,8 @@
 import Category from "./Category.js";
+import Order from "./Order.ts";
+import OrderItem from "./OrderItem.ts";
 import Product from "./Product.js";
 import User from "./User.js";
-import Order from "./Order.ts";
 
 /****************************************
  *           Associations definition
@@ -16,7 +17,7 @@ Product.belongsTo(Category, {
     allowNull: false,
   },
   as: "category",
-  onDelete: "RESTRICT", //!nur Product mit zugeordnete category können gelöscht werden
+  onDelete: "RESTRICT", //!Category darf nicht gelöscht werden, solange Product darauf verweist
 });
 
 Category.hasMany(Product, {
@@ -40,10 +41,10 @@ User.hasMany(Product, {
 Product.belongsTo(User, {
   foreignKey: {
     name: "userId",
-    allowNull: false, //!wichtig für onDelete restrict
+    allowNull: false,
   },
   as: "user",
-  onDelete: "RESTRICT", //!nur Product mit zugeordnete user können gelöscht werden
+  onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange Product darauf verweist
 });
 
 //********** User/Order (1:N) **********
@@ -59,7 +60,7 @@ Order.belongsTo(User, {
     allowNull: false,
   },
   as: "user",
-  onDelete: "RESTRICT", //!nur Order mit zugeordnete user können gelöscht werden
+  onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange Order darauf verweist
 });
 
 /*
@@ -76,7 +77,7 @@ Address.belongsTo(User, {
     allowNull: false,
   },
   as: "user",
-  onDelete: "RESTRICT", //!nur Address mit zugeordnete user können gelöscht werden
+  onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange Address darauf verweist
 });
 
 //! every user has a default address
@@ -86,9 +87,9 @@ User.belongsTo(Address, {
     allowNull: true, //default address will be set by the user
   },
   as: "defaultAddress",
-  onDelete: "RESTRICT", //!nur user mit zugeordnete defaultAddress können gelöscht werden
+  onDelete: "RESTRICT", //!Address darf nicht gelöscht werden, solange User darauf verweist
 });
-
+*/
 //********** Order/OrderItem(1:N) **********
 
 Order.hasMany(OrderItem, {
@@ -102,7 +103,7 @@ OrderItem.belongsTo(Order, {
     allowNull: false,
   },
   as: "order",
-  onDelete: "RESTRICT", //nur orderItem mit zugeordnete order können gelöscht werden
+  onDelete: "RESTRICT", //!Order darf nicht gelöscht werden, solange OrderItem darauf verweist
 });
 
 //********** Product/OrderItem **********
@@ -118,7 +119,7 @@ OrderItem.belongsTo(Product, {
     allowNull: false,
   },
   as: "product",
-  onDelete: "RESTRICT", //nur orderItem mit zugeordnete product können gelöscht werden
+  onDelete: "RESTRICT", //!Product darf nicht gelöscht werden, solange OrderItem darauf verweist
 });
- */
-export { Product, Category, User };
+
+export { Category, Order, OrderItem, Product, User };
