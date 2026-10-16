@@ -16,7 +16,7 @@ type OrderShippingAddress = {
 // !describes the attributes of an Order coming from the database
 type OrderAttributes = OrderShippingAddress & {
   id: number;
-  userId: number;
+  userId: number; //fk Pflichtfeld
   status: OrderStatus;
   isAdminOrder: boolean;
   //! PostgreSQL DECIMAL values ​​are often returned by Sequelize as strings(order.shippingCosts; "4.99")
@@ -39,7 +39,7 @@ type OrderCreationAttributes = OrderShippingAddress & {
   shippingCosts?: string | number; //the default is: 0
 };
 
-//! Model is normally a class, but here we use it as a type
+//! Model is normally a class, but here we use it as a type(Model<DatabaseAttributes, CreationAttributes>)
 const Order = sequelize.define<Model<OrderAttributes, OrderCreationAttributes>>(
   "Order",
   {

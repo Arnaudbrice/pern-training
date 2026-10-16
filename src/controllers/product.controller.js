@@ -110,6 +110,8 @@ export async function getProduct(req, res, next) {
 export const createProduct = async (req, res, next) => {
   const { title, price, description, categoryId, stock } = req.body;
 
+  // TODO: image from cloudinary is missing here
+
   try {
     const category = await Category.findByPk(categoryId);
     // handle foreign key error (category not found)

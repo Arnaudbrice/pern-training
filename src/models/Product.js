@@ -11,6 +11,10 @@ import { sequelize } from "../db/index.js";
 // userId: INTEGER, required
 
 const Product = sequelize.define("Product", {
+  image: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
   title: { type: DataTypes.STRING, allowNull: false },
   price: {
     type: DataTypes.DECIMAL(10, 2),
