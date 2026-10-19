@@ -40,6 +40,8 @@ const OrderItem = sequelize.define<
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  // ! // Snapshot of the product information at the time the order was placed.
+  //! This ensures that the order history remains unchanged if the product is updated later.
   image: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -63,6 +65,7 @@ const OrderItem = sequelize.define<
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    //! application-level validation
     validate: {
       min: 1,
     },

@@ -44,7 +44,7 @@ Product.belongsTo(User, {
     allowNull: false,
   },
   as: "user",
-  onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange Product darauf verweist
+  onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange ein Product darauf verweist
 });
 
 //********** User/Order (1:N) **********
