@@ -101,3 +101,20 @@ or
 (5 rows)
 
 ```
+
+```bash
+Orders
+├── id
+├── userId
+├── status
+└── shippingCosts
+     │
+     └── OrderItems
+          ├── orderId
+          ├── productId
+          ├── quantity
+          ├── unitPrice       ← historischer Kaufpreis
+          ├── title           ← Snapshot
+          ├── image           ← Snapshot
+          └── description     ← Snapshot
+```

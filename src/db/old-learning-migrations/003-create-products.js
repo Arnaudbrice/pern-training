@@ -27,6 +27,7 @@ module.exports = {
         allowNull: false,
         defaultValue: 0,
       },
+      //! sequelize will automatic create the foreign key for us with the name of the field
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -39,6 +40,7 @@ module.exports = {
         // !CASCADE: automatically updates if User id changes
         onUpdate: "CASCADE",
       },
+      //! sequelize will automatic create the foreign key for us with the name of the field
       categoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,
