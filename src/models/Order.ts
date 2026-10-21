@@ -52,6 +52,7 @@ const Order = sequelize.define<Model<OrderAttributes, OrderCreationAttributes>>(
 
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
+    //! foreign key
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
