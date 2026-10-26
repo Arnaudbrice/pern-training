@@ -2,7 +2,7 @@ import Category from "./Category.js";
 import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
 import Product from "./Product.js";
-import User from "./User.js";
+import User from "./User.ts";
 
 /****************************************
  *           Associations definition

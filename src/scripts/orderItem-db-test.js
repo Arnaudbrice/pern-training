@@ -11,6 +11,8 @@ import {
 import { sequelize } from "../db/index.js";
 import assert from "node:assert/strict";
 
+//! Datenbank-Smoke-Test mit Transaktion, Assertions und Rollback
+
 let transaction;
 
 try {
