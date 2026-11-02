@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1790179274815,
@@ -16,6 +16,10 @@
                 {
                     "date": 1791837525388,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,10 @@\n   as: \"user\",\n   onDelete: \"RESTRICT\", //!nur Product ohne zugeordnete user können gelöscht werden\n });\n \n+\n+/*\n //********** User/Order (1:N) **********\n \n User.hasMany(Order, {\n   foreignKey: \"userId\",\n@@ -117,6 +119,6 @@\n   },\n   as: \"product\",\n   onDelete: \"RESTRICT\", //nur orderItem ohne zugeordnete product können gelöscht werden\n });\n-\n+ */\n export { Product, Category, User };\n"
+                },
+                {
+                    "date": 1793631122176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import Order from \"./Order.ts\";\n import OrderItem from \"./OrderItem.ts\";\n import Product from \"./Product.js\";\n import User from \"./User.ts\";\n+import Address from \"./Address.ts\";\n \n /****************************************\n  *           Associations definition\n  ****************************************/\n@@ -62,9 +63,9 @@\n   as: \"user\",\n   onDelete: \"RESTRICT\", //!User darf nicht gelöscht werden, solange Order darauf verweist\n });\n \n-/*\n+\n //********** User/Address(1:N) **********\n \n User.hasMany(Address, {\n   foreignKey: \"userId\",\n@@ -88,9 +89,9 @@\n   },\n   as: \"defaultAddress\",\n   onDelete: \"RESTRICT\", //!Address darf nicht gelöscht werden, solange User darauf verweist\n });\n-*/\n+\n //********** Order/OrderItem(1:N) **********\n \n Order.hasMany(OrderItem, {\n   foreignKey: \"orderId\",\n"
                 }
             ],
             "date": 1790179274815,

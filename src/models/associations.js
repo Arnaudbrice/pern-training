@@ -1,3 +1,4 @@
+import Address from "./Address.ts";
 import Category from "./Category.js";
 import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
@@ -63,7 +64,6 @@ Order.belongsTo(User, {
   onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange Order darauf verweist
 });
 
-/*
 //********** User/Address(1:N) **********
 
 User.hasMany(Address, {
@@ -81,15 +81,15 @@ Address.belongsTo(User, {
 });
 
 //! every user has a default address
-User.belongsTo(Address, {
+/* User.belongsTo(Address, {
   foreignKey: {
     name: "defaultAddressId",
     allowNull: true, //default address will be set by the user
   },
   as: "defaultAddress",
   onDelete: "RESTRICT", //!Address darf nicht gelöscht werden, solange User darauf verweist
-});
-*/
+}); */
+
 //********** Order/OrderItem(1:N) **********
 
 Order.hasMany(OrderItem, {
@@ -122,4 +122,4 @@ OrderItem.belongsTo(Product, {
   onDelete: "RESTRICT", //!Product darf nicht gelöscht werden, solange OrderItem darauf verweist
 });
 
-export { Category, Order, OrderItem, Product, User };
+export { Address, Category, Order, OrderItem, Product, User };
