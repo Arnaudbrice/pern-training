@@ -6,7 +6,9 @@
     "dev": "node --watch --env-file=.env src/index.js",
     "start": "node src/index.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "migrate": "sequelize-cli db:migrate --config src/db/config.cjs --migrations-path src/db/migrations",
+    "migrate-status": "sequelize-cli db:migrate:status --config src/db/config.cjs --migrations-path src/db/migrations"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

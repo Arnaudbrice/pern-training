@@ -134,13 +134,16 @@ try {
   console.log("Alle Prüfungen erfolgreich!");
 
   await transaction.rollback();
+  console.log("✅ OrderItem DB test passed – rollback successful");
 } catch (error) {
   if (transaction && !transaction.finished) {
     await transaction.rollback();
   }
 
   console.error(error);
+  // make sure the nodejs process exits with a non-zero exit code to indicate failure
   process.exitCode = 1;
 } finally {
+  // closes the connection to the database
   await sequelize.close();
 }
