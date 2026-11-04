@@ -80,15 +80,15 @@ Address.belongsTo(User, {
   onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange Address darauf verweist
 });
 
-//! every user has a default address
-/* User.belongsTo(Address, {
+//! every user can optionally have a default address
+User.belongsTo(Address, {
   foreignKey: {
     name: "defaultAddressId",
     allowNull: true, //default address will be set by the user
   },
   as: "defaultAddress",
-  onDelete: "RESTRICT", //!Address darf nicht gelöscht werden, solange User darauf verweist
-}); */
+  onDelete: "SET NULL", //!defaultAddressId can be null if the referenced address is deleted
+});
 
 //********** Order/OrderItem(1:N) **********
 
