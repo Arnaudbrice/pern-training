@@ -5,6 +5,7 @@ type UserAttributes = {
   id: number;
   email: string;
   password: string;
+  defaultAddressId: number | null;
   role: "user" | "admin";
   userAvatar: string | null;
   resetToken: string | null;
@@ -15,6 +16,7 @@ type UserAttributes = {
 
 type OptionalFields =
   | "role"
+  | "defaultAddressId"
   | "userAvatar"
   | "resetToken"
   | "resetTokenExpiration";
@@ -42,6 +44,11 @@ const User = sequelize.define<Model<UserAttributes, UserCreationAttributes>>(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    // !foreign key to Address
+    defaultAddressId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     role: {
       type: DataTypes.ENUM("user", "admin"),

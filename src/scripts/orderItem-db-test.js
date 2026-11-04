@@ -13,10 +13,9 @@ import assert from "node:assert/strict";
 
 //! Datenbank-Smoke-Test mit Transaktion, Assertions und Rollback
 
-let transaction;
+const transaction = await sequelize.transaction();
 
 try {
-  transaction = await sequelize.transaction();
   // !the Tables, that first should be created, can be check on the ER-Diagram
   // TODO 1: Test-User erstellen
   // User.create()
@@ -136,7 +135,7 @@ try {
   await transaction.rollback();
   console.log("✅ OrderItem DB test passed – rollback successful");
 } catch (error) {
-  if (transaction && !transaction.finished) {
+  if (!transaction.finished) {
     await transaction.rollback();
   }
 

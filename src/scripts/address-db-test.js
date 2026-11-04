@@ -67,6 +67,8 @@ try {
   const addresses = foundUser.addresses;
   const firstNamesArray = addresses.map((address) => address.firstName).sort(); //alphabetical order
 
+  // !assert.equal() vergleicht bei Objekten/Arrays Referenzen; deepEqual() vergleicht Inhalte.
+
   //! deepEquals compares the content of both arrays including the order of the elements
   assert.deepEqual(firstNamesArray, ["Jane", "John"]);
 
