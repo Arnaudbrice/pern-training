@@ -1,4 +1,4 @@
-import assert from "node:assert";
+import assert from "node:assert/strict";
 import { sequelize } from "../db/index.js";
 import { Address, User } from "../models/associations.js";
 
