@@ -1,4 +1,5 @@
 import Address from "./Address.ts";
+import Cart from "./Cart.ts";
 import Category from "./Category.js";
 import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
@@ -90,6 +91,23 @@ User.belongsTo(Address, {
   onDelete: "SET NULL", //!defaultAddressId can be null if the referenced address is deleted
 });
 
+//********** User/Cart(1:1) **********
+
+User.hasOne(Cart, {
+  foreignKey: "userId",
+  as: "cart",
+});
+
+Cart.belongsTo(User, {
+  foreignKey: {
+    name: "userId",
+    allowNull: false,
+  },
+  as: "user",
+  onDelete: "CASCADE", //if user is deleted, cart is also deleted
+  onUpdate: "CASCADE",
+});
+
 //********** Order/OrderItem(1:N) **********
 
 Order.hasMany(OrderItem, {
@@ -122,4 +140,4 @@ OrderItem.belongsTo(Product, {
   onDelete: "RESTRICT", //!Product darf nicht gelöscht werden, solange OrderItem darauf verweist
 });
 
-export { Address, Category, Order, OrderItem, Product, User };
+export { Address, Cart, Category, Order, OrderItem, Product, User };
