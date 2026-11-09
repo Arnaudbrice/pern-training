@@ -1,5 +1,6 @@
 import Address from "./Address.ts";
 import Cart from "./Cart.ts";
+import CartItem from "./CartItem.js";
 import Category from "./Category.js";
 import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
@@ -105,6 +106,71 @@ Cart.belongsTo(User, {
   },
   as: "user",
   onDelete: "CASCADE", //if user is deleted, cart is also deleted
+  onUpdate: "CASCADE",
+});
+
+//********** Cart/CartItem(1:n) **********
+
+Cart.hasMany(CartItem, {
+  foreignKey: "cartId",
+  as: "cartItems",
+});
+
+CartItem.belongsTo(Cart, {
+  foreignKey: {
+    name: "cartId",
+    allowNull: false,
+  },
+  as: "cart",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+
+//********** Product/CartItem(1:n) **********
+
+Product.hasMany(CartItem, {
+  foreignKey: "productId",
+  as: "cartItems",
+});
+
+CartItem.belongsTo(Product, {
+  foreignKey: {
+    name: "productId",
+    allowNull: false,
+  },
+  as: "product",
+  onDelete: "RESTRICT",
+  onUpdate: "CASCADE",
+});
+
+//********** Cart/Product(m:n) **********
+Cart.belongsToMany(Product, {
+  through: {
+    model: CartItem,
+  },
+  foreignKey: {
+    //!belongsToMany → foreignKey references the source model(cart)and is in the association table (cartItem)
+    name: "cartId",
+    allowNull: false,
+  },
+  otherKey: "productId", //the other foreignKey
+  as: "products",
+  onDelete: "CASCADE", //!default bei (m:n) relationship
+  onUpdate: "CASCADE", //!default bei (m:n) relationship
+});
+
+Product.belongsToMany(Cart, {
+  through: {
+    model: CartItem,
+  },
+  foreignKey: {
+    //!belongsToMany → foreignKey references the source model(product) and is in the association table (cartItem)
+    name: "productId",
+    allowNull: false,
+  },
+  otherKey: "cartId", //the other foreignKey
+  as: "carts",
+  onDelete: "RESTRICT", // Prevent deletion of products used in carts
   onUpdate: "CASCADE",
 });
 
