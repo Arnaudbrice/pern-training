@@ -30,6 +30,15 @@ const Product = sequelize.define("Product", {
     allowNull: false,
     defaultValue: 0,
   },
+
+  weightGrams: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      //!application level validation
+      min: 1, //1 gram min weight
+    },
+  },
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
