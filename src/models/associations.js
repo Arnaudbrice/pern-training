@@ -1,6 +1,6 @@
 import Address from "./Address.ts";
 import Cart from "./Cart.ts";
-import CartItem from "./CartItem.js";
+import CartItem from "./CartItem.ts";
 import Category from "./Category.js";
 import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
@@ -206,4 +206,4 @@ OrderItem.belongsTo(Product, {
   onDelete: "RESTRICT", //!Product darf nicht gelöscht werden, solange OrderItem darauf verweist
 });
 
-export { Address, Cart, Category, Order, OrderItem, Product, User };
+export { Address, Cart, CartItem, Category, Order, OrderItem, Product, User };
