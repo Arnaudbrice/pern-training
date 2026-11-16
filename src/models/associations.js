@@ -6,6 +6,7 @@ import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
 import Product from "./Product.js";
 import User from "./User.ts";
+import Review from "./Review.ts";
 
 /****************************************
  *           Associations definition
@@ -144,6 +145,9 @@ CartItem.belongsTo(Product, {
 });
 
 //********** Cart/Product(m:n) **********
+// !cartItem is the association table
+// !cartId is the foreign key in cartItem
+// !productId is the foreign key in cartItem
 Cart.belongsToMany(Product, {
   through: {
     model: CartItem,
@@ -171,6 +175,38 @@ Product.belongsToMany(Cart, {
   otherKey: "cartId", //the other foreignKey
   as: "carts",
   onDelete: "RESTRICT", // Prevent deletion of products used in carts
+  onUpdate: "CASCADE",
+});
+
+//********** User/Review(1:N) **********
+User.hasMany(Review, {
+  foreignKey: "userId",
+  as: "reviews",
+});
+Review.belongsTo(User, {
+  foreignKey: {
+    name: "userId",
+    allowNull: false,
+  },
+  as: "user",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+
+//********** Product/Review(1:N) **********
+
+Product.hasMany(Review, {
+  foreignKey: "productId",
+  as: "reviews",
+});
+
+Review.belongsTo(Product, {
+  foreignKey: {
+    name: "productId",
+    allowNull: false,
+  },
+  as: "product",
+  onDelete: "RESTRICT", //!Product darf nicht gelöscht werden, solange Review darauf verweist
   onUpdate: "CASCADE",
 });
 

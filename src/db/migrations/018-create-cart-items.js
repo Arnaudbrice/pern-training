@@ -69,7 +69,8 @@ module.exports = {
         { transaction },
       );
 
-      // add composite unique (cardId, productId) constraint
+      //! add composite unique (cardId, productId) constraint
+
       await queryInterface.addIndex("CartItems", ["cartId", "productId"], {
         name: "cartItems_cartId_productId_unique",
         unique: true,
