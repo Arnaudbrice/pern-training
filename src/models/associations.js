@@ -5,8 +5,8 @@ import Category from "./Category.js";
 import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
 import Product from "./Product.js";
-import User from "./User.ts";
 import Review from "./Review.ts";
+import User from "./User.ts";
 
 /****************************************
  *           Associations definition
@@ -242,4 +242,14 @@ OrderItem.belongsTo(Product, {
   onDelete: "RESTRICT", //!Product darf nicht gelöscht werden, solange OrderItem darauf verweist
 });
 
-export { Address, Cart, CartItem, Category, Order, OrderItem, Product, User };
+export {
+  Address,
+  Cart,
+  CartItem,
+  Category,
+  Order,
+  OrderItem,
+  Product,
+  Review,
+  User,
+};
