@@ -12,6 +12,7 @@ module.exports = {
             autoIncrement: true,
             allowNull: false,
           },
+          // fk productId
           productId: {
             type: Sequelize.INTEGER,
             references: {
@@ -22,6 +23,7 @@ module.exports = {
             onDelete: "RESTRICT",
             onUpdate: "CASCADE",
           },
+          // fk userId
           userId: {
             type: Sequelize.INTEGER,
             references: {

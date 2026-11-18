@@ -86,6 +86,8 @@ async function testCompositeUnique() {
   }
 }
 
+//**********************************************
+
 async function testCascade() {
   let transaction;
   try {
@@ -139,11 +141,12 @@ async function testCascade() {
       { transaction },
     );
 
+    //! tests Review CASCADE constraint by deleting a reviewer (reviewer is not referenced by a product, so it can be deleted)
     const rowCount = await User.destroy({
       where: { id: reviewer.id },
       transaction,
     });
-    assert.ok(rowCount === 1);
+    assert.equal(rowCount, 1);
 
     // deletes a reviewer will also delete its reviews
     const deletedReview = await Review.findByPk(review.id, {
@@ -151,11 +154,12 @@ async function testCascade() {
     });
     assert.equal(deletedReview, null);
 
+    //! deletes a reviewer will not delete the product
     const remainingProduct = await Product.findByPk(product.id, {
       transaction,
     });
     assert.ok(remainingProduct);
-    assert.ok(remainingProduct.userId, owner.id);
+    assert.equal(remainingProduct.userId, owner.id);
 
     await transaction.rollback();
 
@@ -165,10 +169,11 @@ async function testCascade() {
       await transaction.rollback();
     }
 
+    //! throws an error that will be catch by the next catch block
     throw err;
   }
 }
-
+//**********************************************
 async function testRestrict() {
   let transaction;
   try {
@@ -215,14 +220,20 @@ async function testRestrict() {
       { transaction },
     );
 
-    assert.rejects(
+    //! tests Product should not be deleted as long as Review referenced it
+    await assert.rejects(
       () =>
-        sequelize.query('DELETE FROM "Products" WHERE "id "= $1', {
+        sequelize.query('DELETE FROM "Products" WHERE "id"= $1', {
           bind: [product.id],
           transaction,
         }),
       (error) => {
         assert.ok(error instanceof ForeignKeyConstraintError);
+
+        /*alternative:    assert.equal(
+          error.name,
+          "SequelizeForeignKeyConstraintError",
+        ); */
 
         assert.equal(error.original?.code, "23503");
         assert.equal(error.original?.constraint, "Reviews_productId_fkey");
