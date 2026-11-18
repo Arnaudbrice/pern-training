@@ -106,7 +106,7 @@ try {
   assert.equal(userWithReviews.reviews[0].product.id, product.id);
   assert.equal(userWithReviews.reviews[0].product.title, product.title);
 
-  //tests check-constraint
+  //!tests check-constraint
 
   await assert.rejects(
     () =>
