@@ -7,6 +7,7 @@ import OrderItem from "./OrderItem.ts";
 import Product from "./Product.js";
 import Review from "./Review.ts";
 import User from "./User.ts";
+import UserFavorite from "./UserFavorite.ts";
 
 /****************************************
  *           Associations definition
@@ -49,6 +50,30 @@ Product.belongsTo(User, {
   },
   as: "user",
   onDelete: "RESTRICT", //!User darf nicht gelöscht werden, solange ein Product darauf verweist
+});
+
+//********** User ↔ Product (M:N) **********
+
+User.belongsToMany(Product, {
+  through: UserFavorite, //!association table
+  foreignKey: {
+    name: "userId",
+    allowNull: false,
+  },
+  otherKey: {
+    name: "productId",
+    allowNull: false,
+  },
+  as: "favoriteProducts",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+
+Product.belongsToMany(User, {
+  through: UserFavorite, //!association table
+  foreignKey: { name: "productId", allowNull: false },
+  otherKey: { name: "userId", allowNull: false },
+  as: "favoritedBy",
 });
 
 //********** User/Order (1:N) **********
@@ -159,8 +184,8 @@ Cart.belongsToMany(Product, {
   },
   otherKey: "productId", //the other foreignKey
   as: "products",
-  onDelete: "CASCADE", //!default bei (m:n) relationship
-  onUpdate: "CASCADE", //!default bei (m:n) relationship
+  onDelete: "CASCADE", //!default by (m:n) relationship (deleting a cart will automatically delete the cartItem records with its cartId)
+  onUpdate: "CASCADE", //!default by (m:n) relationship
 });
 
 Product.belongsToMany(Cart, {
@@ -174,7 +199,7 @@ Product.belongsToMany(Cart, {
   },
   otherKey: "cartId", //the other foreignKey
   as: "carts",
-  onDelete: "RESTRICT", // Prevent deletion of products used in carts
+  onDelete: "RESTRICT", //! Prevent deletion of a product if a cart in the cartItem table references this product
   onUpdate: "CASCADE",
 });
 
@@ -252,4 +277,5 @@ export {
   Product,
   Review,
   User,
+  UserFavorite,
 };
