@@ -1,6 +1,10 @@
 import { DataTypes, type Model } from "sequelize";
 import { sequelize } from "../db/index.js";
 
+// !UserFavorite model (join table between User and Product)
+
+//a User can have many favorite products and a Product can be favorited by many Users(User and Product are related by a many-to-many relationship)
+
 type UserFavoriteAttributes = {
   userId: number;
   productId: number;
