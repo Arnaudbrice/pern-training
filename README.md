@@ -240,7 +240,7 @@ pern-training/
 - [x] Product CRUD routes and basic user/category routes
 - [x] Cart / CartItem constraints and transaction tests
 - [x] Review schema, rating rules, and associations
-- [ ] Finish review constraint integration tests
+- [x] Finish review constraint integration tests
 - [ ] Complete authentication, cart, order, and review APIs
 - [ ] **Build and integrate React + TypeScript frontend**
 - [ ] Product browsing, cart, checkout, ratings, and account UI
