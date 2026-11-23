@@ -71,9 +71,17 @@ User.belongsToMany(Product, {
 
 Product.belongsToMany(User, {
   through: UserFavorite, //!association table
-  foreignKey: { name: "productId", allowNull: false },
-  otherKey: { name: "userId", allowNull: false },
+  foreignKey: {
+    name: "productId",
+    allowNull: false,
+  },
+  otherKey: {
+    name: "userId",
+    allowNull: false,
+  },
   as: "favoritedBy",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
 });
 
 //********** User/Order (1:N) **********
