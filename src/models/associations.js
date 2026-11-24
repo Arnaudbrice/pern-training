@@ -65,7 +65,7 @@ User.belongsToMany(Product, {
     allowNull: false,
   },
   as: "favoriteProducts",
-  onDelete: "CASCADE",
+  onDelete: "CASCADE", //!if user is deleted, the favorite record (productId,userId) in the association table is also deleted
   onUpdate: "CASCADE",
 });
 
@@ -80,7 +80,7 @@ Product.belongsToMany(User, {
     allowNull: false,
   },
   as: "favoritedBy",
-  onDelete: "CASCADE",
+  onDelete: "CASCADE", //!if product is deleted, the favorite record (productId,userId) in the association table is also deleted
   onUpdate: "CASCADE",
 });
 
