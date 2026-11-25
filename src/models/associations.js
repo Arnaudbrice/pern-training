@@ -4,7 +4,7 @@ import CartItem from "./CartItem.ts";
 import Category from "./Category.js";
 import Order from "./Order.ts";
 import OrderItem from "./OrderItem.ts";
-import Product from "./Product.js";
+import Product from "./Product.ts";
 import Review from "./Review.ts";
 import User from "./User.ts";
 import UserFavorite from "./UserFavorite.ts";
